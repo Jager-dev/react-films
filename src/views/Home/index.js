@@ -15,7 +15,7 @@ const Home = () => {
       .then(({data}) => setFilms(data.results))
   },[page])
   return (
-    <div className={"my-5"}>
+    <div>
       {
         [...Array(6).keys()].map(item =>
           <button type={"button"} key={item} className={`btn btn-warning mx-2 ${page === item + 1 && "btn-danger"}`}
@@ -27,14 +27,12 @@ const Home = () => {
         <div className={"row my-5"}>
           {
             films.map(film =>
-
-              <div className={"col-md-3 col-sm-6 mb-3"} key={film.id}>
+              <div className={"col-md-3 col-sm-6 mb-4"} key={film.id}>
                 <Link to={`/film/${film.id}`}>
                 <img src={`https://www.themoviedb.org/t/p/w220_and_h330_face${film.poster_path}`} alt={film.title} className={"w100"}/>
                 <h4 className={"mt-3"}>{film.original_title}</h4>
                 </Link>
               </div>
-
             )
           }
         </div>
@@ -42,5 +40,4 @@ const Home = () => {
     </div>
   );
 };
-
 export default Home;
