@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios'
 import {Link} from "react-router-dom";
+import Spinner from "../../components/Spinner";
 
 const Home = () => {
   const [page, setPage] = useState(1)
   const [films, setFilms] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
 
   const handlePage = (num) => {
     setPage(num)
@@ -12,8 +15,18 @@ const Home = () => {
 
   useEffect( () => {
     axios(`https://api.themoviedb.org/3/discover/movie?language=en&page=${page}&sort_by=popularity.desc&api_key=6f19f87e3380315b9573c4270bfc863c`)
-      .then(({data}) => setFilms(data.results))
+      .then(({data}) => {
+        setFilms(data.results)
+        setIsLoading(false)
+      })
   },[page])
+
+  if (isLoading){
+    return (
+      <Spinner />
+    )
+  }
+
   return (
     <div>
       {

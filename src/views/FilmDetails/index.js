@@ -1,13 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useParams} from "react-router-dom"
+import {Link, useHistory, useParams} from "react-router-dom"
 import axios from "axios";
 import Spinner from "../../components/Spinner";
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import Fancy from "../../components/Fancy";
-
-
 
 const FilmDetails = () => {
   const [film, setFilm] = useState({})
@@ -16,8 +14,8 @@ const FilmDetails = () => {
   const [actorLoading, setActorLoading] = useState(true)
   const [trailers, setTrailers] = useState([])
 
-
   const params = useParams()
+  const history = useHistory()
 
   useEffect(() => {
     axios(`https://api.themoviedb.org/3/movie/${params.id}?api_key=6f19f87e3380315b9573c4270bfc863c`)
@@ -38,51 +36,75 @@ const FilmDetails = () => {
       })
   },[])
 
-  if (isLoading && actorLoading){
+  if (isLoading || actorLoading){
     return (
       <Spinner />
     )
   }
   return (
     <div className={"row"}>
-      <div className="col-md-5">
-        <img src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${film.poster_path}`} alt={film.title}/>
+      <div>
+        <button className="back" onClick={() => history.goBack()}>Back</button>
       </div>
       <div className="col-md-6">
-        <h3>Название: {film.title}</h3>
-        <p>Описание: {film.overview}</p>
-        <p>Рейтинг: {film.vote_average}</p>
-        <p>Бюджет: {film.budget.toLocaleString()}$</p>
-        <h5>Производители:</h5>
+        <img src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${film.poster_path}`} alt={film.title} width={"400"}/>
+      </div>
+      <div className="col-md-6">
+        <h3>Name: {film.title}</h3>
+        <p>Overview: {film.overview}</p>
+        <p>Language: {film.original_language}</p>
+        <p>Rating: {film.vote_average}</p>
+        <p>Budget: {film.budget.toLocaleString()}$</p>
+        <p>Revenue: {film.revenue?.toLocaleString()}$</p>
+        <p>Release date: {film.release_date}</p>
+        <h5>Producers:</h5>
         {
           film.production_companies.map(company =>
             <div key={company.id}>{company.name}</div>
           )
         }
-        <h5>Страны:</h5>
+        <div>
+          <p><span>Genre:  </span>{film.genres?.map(item => <div
+            key={item}>{item.name}</div>)}
+
+          </p>
+          <p>
+            <span>Film duration: </span> {Math.floor(film.runtime / 60)}h {Math.floor(film.runtime % 60)}m
+          </p>
+        </div>
+        {
+          film.production_countries.map(item => item).length > 1 ? <h5>Countries:</h5> : film.production_countries.length === 0 ? "" : <h5>Country:</h5>
+        }
         {
           film.production_countries.map(country =>
             <div key={country.id}>{country.name}</div>
           )
         }
-        <h5 className={"mt-5"}>Актёры:</h5>
+        <h5 className={"mt-5"}>Actors:</h5>
         <OwlCarousel className='owl-theme mt-3' loop margin={10} dots={false} items={4} nav>
           {
-            actors.map(actor =>
+            actors.slice(actors, 10).map(actor =>
               <div>
-                <img src={`https://www.themoviedb.org/t/p/w138_and_h175_face${actor.profile_path}`} alt={actors.character}/>
-                <div>{actor.character}</div>
+                <Link to={`/actorsdetails/${actor.id}`}>
+                  {
+                    actor.profile_path === null ?
+                      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBjZn8mOw7F4rtWWKbEIIHOr_w_GAeHiXPgA&usqp=CAU" height={"193.5"} alt=""/>
+                      :
+                      <img src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`} alt=""/>
+                  }
+                </Link>
+                <div>{actor.name}</div>
               </div>
             )
           }
-          <Link to={`/actors/${params.id}`}>Show more</Link>
+          <Link to={`/actors/${params.id}`}>View more --></Link>
         </OwlCarousel>
       </div>
       {
           trailers.map(item =>
             <Fancy key={item.key} id={item.key}/>
           )
-        }
+      }
     </div>
   )
 }

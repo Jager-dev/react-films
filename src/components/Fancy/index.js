@@ -11,7 +11,7 @@ const Fancy = ({id}) => {
             <>
               <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId={id} onClose={() => setOpen(false)} />
 
-              <img src={`https://www.themoviedb.org/t/p/w533_and_h300_bestv2/nDLylQOoIazGyYuWhk21Yww5FCb.jpg`} alt=""  onClick={()=> setOpen(true)}/>
+              <button className="btn-primary" onClick={()=> setOpen(true)}>View Trailer</button>
             </>
     </div>
   );
