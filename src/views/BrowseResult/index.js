@@ -14,6 +14,7 @@ const BrowseResult = () => {
       .then(({data}) => {
         setBrowseResult(data)
         setIsLoading(false)
+        setPage()
       })
   }, [page, name])
 
