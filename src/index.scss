@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
 *{
   box-sizing: border-box;
+  list-style: none;
 }
 body{
   background-color: #22254b;
@@ -24,6 +25,7 @@ header{
   background: #373b69;
   border-radius: 3px;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
   overflow: hidden;
   margin: 1rem;
   width: 220px;
@@ -33,6 +35,25 @@ header{
 }
 .film__info h5{
   margin: 0;
+}
+.film__card__over{
+  background-color: white;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  color: #22254b;
+  padding: 1rem;
+  font-size: 12px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  max-height: 100%;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+}
+.film__card:hover .film__card__over{
+  transform: translateY(0%);
 }
 
 

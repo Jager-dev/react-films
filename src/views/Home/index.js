@@ -40,7 +40,11 @@ const Home = () => {
                          className={"w100"}/>
                     <div className={"film__info d-flex justify-content-space-between align-items-center"}>
                       <h5>{film.title}</h5>
-                      <span>{film.vote_average}</span>
+                      <p>{film.vote_average}</p>
+                    </div>
+                    <div className={"film__card__over"}>
+                      <h5>Overview:</h5>
+                      <p>{film.overview}</p>
                     </div>
                   </div>
                 </Link>
@@ -53,8 +57,7 @@ const Home = () => {
         {
           [...Array(6).keys()].map(item =>
             <button type={"button"} key={item} className={`btn btn-light mx-2 ${page === item + 1 || "btn-dark"}`}
-                    onClick={() => handlePage(item + 1)}
-            >{item + 1}</button>
+                    onClick={() => handlePage(item + 1)}>{item + 1}</button>
           )
         }
       </div>
