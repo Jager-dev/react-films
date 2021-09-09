@@ -1,6 +1,39 @@
 @import 'node_modules/react-modal-video/scss/modal-video.scss';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+*{
+  box-sizing: border-box;
+}
+body{
+  background-color: #22254b;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+}
  a{
    text-decoration: none;
+   color: white;
  }
+header{
+  background: #373b69;
+  padding: 1rem;
+  display: flex;
+}
+.film__card{
+  background: #373b69;
+  border-radius: 3px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 1rem;
+  width: 220px;
+}
+.film__info{
+  padding: 10px;
+}
+.film__info h5{
+  margin: 0;
+}
+
 
 

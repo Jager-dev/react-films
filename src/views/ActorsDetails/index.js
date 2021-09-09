@@ -65,7 +65,7 @@ const ActorsDetails = () => {
                 <Link to={`/film/${item.id}`}>
                   {
                     item.poster_path === null ?
-                      <img src="https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132484366.jpg" alt="" height={"180"}/>
+                      <img src="https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132484366.jpg" alt="" height={"193.5"}/>
                       :
                       <img alt="" src={`https://www.themoviedb.org/t/p/w150_and_h225_bestv2${item.poster_path}`}/>
                   }
