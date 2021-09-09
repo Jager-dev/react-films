@@ -19,7 +19,7 @@ const BrowseResult = () => {
   }, [page, name])
 
   if (isLoading){
-    return (
+    return  (
       <Spinner />
     )
   }
