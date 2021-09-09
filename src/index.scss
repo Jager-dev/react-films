@@ -55,6 +55,11 @@ header{
 .film__card:hover .film__card__over{
   transform: translateY(0%);
 }
-
+.bg{
+  height: 100vh;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 
 
