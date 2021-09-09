@@ -34,7 +34,7 @@ const FilmDetails = () => {
         setActors(data.cast)
         setActorLoading(false)
       })
-  }, [])
+  }, [params.id])
 
   if (isLoading || actorLoading) {
     return (
