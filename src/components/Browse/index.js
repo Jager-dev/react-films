@@ -32,7 +32,7 @@ const Browse = () => {
         </nav>
         <div className={"d-flex"}>
           <input type="text" className={"browse__input"} placeholder={"Search a film, serial, actor..."} onKeyDown={enterPress} value={inputValue} onChange={input}/>
-          <button className={"d-flex justify-content-center align-items-center"} onClick={handleClick} disabled={!inputValue.trim()}>
+          <button  className={"d-flex justify-content-center align-items-center"} onClick={handleClick} disabled={!inputValue.trim()}>
             search
           </button>
         </div>
